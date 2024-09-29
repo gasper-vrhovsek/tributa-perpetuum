@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record TaxationResultResponse(
+public record TaxationResponse(
         @JsonProperty("possibleReturnAmount") BigDecimal possibleReturnAmount,
         @JsonProperty("possibleReturnAmountBefTax,") BigDecimal possibleReturnAmountBefTax,
         @JsonProperty("possibleReturnAmountAfterTax,") BigDecimal possibleReturnAmountAfterTax,
