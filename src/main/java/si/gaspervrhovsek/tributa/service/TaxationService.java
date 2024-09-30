@@ -24,9 +24,7 @@ public class TaxationService {
 
         final var bet = calcBet(playedAmount, odd);
 
-        final var taxCalculation = taxCalculationService.calcTax(bet, location.taxType, location.taxCalcType, location.tax);
-        System.out.println("Tax calculation = " + taxCalculation);
-        return taxCalculation;
+        return taxCalculationService.calcTax(bet, location.taxType, location.taxCalcType, location.tax);
     }
 
     private Bet calcBet(final BigDecimal playedAmount, final BigDecimal odd) {

@@ -20,7 +20,7 @@ public class TaxCalculationService {
         return new TaxCalculation(
                 betOutcome,
                 betOutcome,
-                betOutcome.subtract(taxAmount).max(new BigDecimal("0")),
+                betOutcome.subtract(taxAmount),
                 getTaxRate(betOutcome, taxAmount),
                 taxAmount
         );
@@ -40,7 +40,7 @@ public class TaxCalculationService {
 
     private BigDecimal getTaxCalculationBaseAmount(final Bet bet, final TaxType taxType) {
         switch (taxType) {
-            case GENRAL -> {
+            case GENERAL -> {
                 return bet.betOutcome();
             }
             case WINNINGS -> {
@@ -52,7 +52,7 @@ public class TaxCalculationService {
 
     private BigDecimal getTaxRate(final BigDecimal betOutcome, final BigDecimal taxAmount) {
         if (betOutcome.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("Bet outcome cannot be zero");
+            throw new IllegalArgumentException("Bet outcome cannot be zero or negative");
         }
         return taxAmount.divide(betOutcome, 4, RoundingMode.HALF_UP).multiply(new BigDecimal("100"));
     }
