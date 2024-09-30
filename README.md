@@ -1,5 +1,21 @@
 # tributa-perpetuum
 
+This project is a demo service which illustrates how a taxation rest service could work. 
+It is in no way perfect, some corner cases could have been handled better (what happens if tax eats all
+my earnings?), there should be an admin endpoint allowing to edit taxation types, rates, amounts for different
+locations. But it does illustrate how i think such a service should begin its life.
+
+There is one REST endpoint in the `TributaResource` class. It uses JWT authentication. The JWT access token
+can be obtained by running the `GenerateToken` test class. It will return an access token for a random `Trader`.
+The service uses this simple way of generating an access token because in production whis would be done with 
+Keycloak or similar identity provider.
+
+I allowed myself to change the API a bit, mostly I am using UUID as ids (also for traderId) and I'm extracting that from
+the JWT token instead of using the value in the request. This is of course open for discussion and totally dependent
+on the use case.
+
+Service demonstration is in `TributaResourceTest`. It will run a short set of tax calculations for different traders.
+
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
